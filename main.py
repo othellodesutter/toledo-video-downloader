@@ -26,8 +26,8 @@ async def main(request: Request):
             return templates.TemplateResponse('index.html', {'request': request, 'error': "No videos found :'("})
         else:
             return templates.TemplateResponse('videos.html', {'request': request, 'videos': videos['videos']})
-    except:
-        return templates.TemplateResponse('index.html', {'request': request, 'error': "Error :("})
+    except Exception as e:
+        return templates.TemplateResponse('index.html', {'request': request, 'error': e})
 
 @app.get("/info")
 def info(request: Request):
