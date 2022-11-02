@@ -20,9 +20,7 @@ async def main(request: Request):
     requested_videos = data['videos']
     try:
         videos = script.get_video_metadata(script.get_kaltura_videos(requested_videos))
-        print(videos)
         videos = json.loads(videos)
-        print(videos)
 
         if videos == []:
             return templates.TemplateResponse('index.html', {'request': request, 'error': "No videos found :'("})
