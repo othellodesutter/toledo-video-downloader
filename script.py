@@ -50,7 +50,5 @@ def get_video_metadata(videos):
                     format_filesize_rounded = str(format_filesize_approx) + " B"
                 formats.append({'format_id': format_id, 'format_url': format_url, 'format_height': format_height, 'format_width': format_width, 'format_ext': format_ext, 'format_filesize_approx': format_filesize_approx, 'format_filesize_rounded': format_filesize_rounded})
         video['formats'] = formats
-    print("videos after get_video_metadata")
-    print(videos)
 
     return json.dumps(videos)
