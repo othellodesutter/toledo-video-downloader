@@ -17,14 +17,10 @@ def read_root(request: Request):
 async def main(request: Request):
     data = await request.form()
     data = jsonable_encoder(data)
-    print(data)
     requested_videos = data['videos']
-    print(requested_videos)
     try:
         videos = script.get_video_metadata(script.get_kaltura_videos(requested_videos))
-        print(videos)
         videos = json.loads(videos)
-        print(videos)
 
         if videos == []:
             return templates.TemplateResponse('index.html', {'request': request, 'error': "No videos found :'("})
