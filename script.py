@@ -2,6 +2,8 @@ import re
 import json
 import subprocess
 
+# to do : change subrpocess to youtube-dl library for security reasons
+
 def get_kaltura_videos(videos):
     videos = json.loads(videos)
     pattern = '/p/(.+)/sp/.*/entry_id/(.*)/version'
