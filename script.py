@@ -3,7 +3,9 @@ import json
 import subprocess
 
 def get_kaltura_videos(videos):
+    print("getting kaltura videos")
     videos = json.loads(videos)
+    print(videos)
     pattern = '/p/(.+)/sp/.*/entry_id/(.*)/version'
     for video in videos['videos']:
         try:
