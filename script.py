@@ -1,8 +1,6 @@
 import re
 import json
-import subprocess
-
-# to do : change subrpocess to youtube-dl library for security reasons
+import youtube_dl
 
 def get_kaltura_videos(videos):
     videos = json.loads(videos)
@@ -24,10 +22,12 @@ def get_video_metadata(videos):
     for video in videos['videos']:
         kaltura_p = video['kaltura_p']
         kaltura_e = video['kaltura_e']
-        cmd = f'youtube-dl -f "[protocol=m3u8_native]" kaltura:{kaltura_p}:{kaltura_e} --dump-json'
-        result = subprocess.run(cmd, shell=True, capture_output=True)
-        result = result.stdout.decode('utf-8')
-        result = json.loads(result)
+
+        ydl_opts = {
+            'extract_flat': True,
+            'dumpjson': True
+        }
+        result = youtube_dl.YoutubeDL(ydl_opts).extract_info(f"kaltura:{kaltura_p}:{kaltura_e}", download=False)
 
         video['kaltura_title'] = result['title']
         
