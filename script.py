@@ -3,7 +3,6 @@ import json
 import subprocess
 
 def get_kaltura_videos(videos):
-    print("getting kaltura videos")
     videos = json.loads(videos)
     pattern = '/p/(.+)/sp/.*/entry_id/(.*)/version'
     for video in videos['videos']:
@@ -15,15 +14,10 @@ def get_kaltura_videos(videos):
             video['kaltura_e'] = kaltura_e
         except:
             return "error"
-    print("returning videos after get_kaltura_video")
-    print(videos)
     return json.dumps(videos)
 
 def get_video_metadata(videos):
-    print("getting video metadata (before json loads)")
     videos = json.loads(videos)
-    print("getting video metadata (after json loads)")
-    print(videos)
     for video in videos['videos']:
         kaltura_p = video['kaltura_p']
         kaltura_e = video['kaltura_e']
@@ -56,5 +50,7 @@ def get_video_metadata(videos):
                     format_filesize_rounded = str(format_filesize_approx) + " B"
                 formats.append({'format_id': format_id, 'format_url': format_url, 'format_height': format_height, 'format_width': format_width, 'format_ext': format_ext, 'format_filesize_approx': format_filesize_approx, 'format_filesize_rounded': format_filesize_rounded})
         video['formats'] = formats
+    print("videos after get_video_metadata")
+    print(videos)
 
     return json.dumps(videos)
