@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../static/styles.css">
+        <title>toledo downloader</title>
+    </head>
+    <body>
+        <div class="container">
+            <p>{{ error }}</p>
+            <br>
+            <a href="/"><img src="../static/toledo.jpg" width="350"></a>
+            <br>
+            <h2><a href="/">toledo downloader</a></h2>
+            <h3>plak de videos die je wilt :</h3>
+            <br>
+            <form method="post" action="/">
+                <textarea type="text" name="videos" placeholder="videos" rows="25" cols="70" required></textarea>
+                <input type="submit" value="download videos">
+            </form>
+            <h4><a href="/info">(druk hier voor een tutorial / informatie over hoe dit werkt)</a></h4>
+        </div>
+    </body>
+</html>

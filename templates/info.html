@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../static/styles.css">
+        <title>toledo downloader</title>
+    </head>
+    <body>
+        <div class="container">
+            <p>{{ error }}</p>
+            <br>
+            <a href="/"><img src="../static/toledo.jpg" width="350"></a>
+            <br>
+            <h2><a href="/">toledo downloader</a></h2>
+            <br>
+            <h4>1) Sleep volgende knop naar je bladwijzerbalk :</h4>
+            <a href="javascript:void%20function(){(function(){let%20a=document.getElementById(%22content_listContainer%22).getElementsByTagName(%22li%22),b=[];for(var%20c=0;c%3Ca.length;c++)if(0%3Ca[c].getElementsByTagName(%22iframe%22).length){var%20d=%22\%22%22+a[c].getElementsByTagName(%22iframe%22)[0].src+%22\%22%22,e=%22\%22%22+a[c].getElementsByTagName(%22h3%22)[0].innerText+%22\%22%22;b.push(%22{\%22toledo_url\%22:%22+d+%22,\%22toledo_title\%22:%22+e+%22}%22)}var%20f=%22{\%22videos\%22:%20[%22+b.join(%22,%22).toString()+%22]}%22;navigator.clipboard.writeText(f),null})()}();"><button>copy to download</button></a>
+            <br>
+            <br>
+            <h4>2) Open vervolgens de Toledo pagina waar je de video's op staan die jij wilt downloaden: </h4>
+            <img src="../static/screenshot1.png" width="500">
+            <br>
+            <h4>3) Klik vervolgens op de knop die je zojuist naar je bladwijzerbalk hebt gesleept: </h4>
+            <img src="../static/screenshot2.png" width="200">
+            <br>
+            <h4>4) Plak vervolgens de text die de knop voor jou gekopiëerd heeft in het tekstvlak op <a href="index.html">de homepagina van deze site: </a></h4>
+            <img src="../static/screenshot3.png" width="500">
+            <br>
+            <h4>5) En klik vervolgens op de download knop van de gewenste video met de gewenste filesize</h4>
+            <br>
+        </div>
+    </body>
+</html>

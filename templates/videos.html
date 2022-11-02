@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../static/styles.css">
+        <title>toledo downloader</title>
+    </head>
+    <body>
+        <div class="container">
+            <p>{{ error }}</p>
+            <br>
+            <a href="/"><img src="../static/toledo.jpg" width="350"></a>
+            <br>
+            <h2><a href="/">toledo downloader</a></h2>
+            <br>
+            {% for video in videos %}
+                <p>-----------------------------------------------------------------------------------------</p>
+                <h2>{{ video['toledo_title'] }}</h2>
+                <h3>{{ video['kaltura_title'] }}</h3>
+                <video controls>
+                    <source src="{{ video['formats'][0]['format_url'] }}" type="video/mp4">
+                </video>
+                <ul>
+                    {% for format in video['formats'] %}
+                        <a onclick='downloadResource("{{ format["format_url"] }}","{{ video["toledo_title"] }}")'>
+                            <button>{{ format['format_filesize_rounded'] }}</button>
+                        </a>
+                    {% endfor %}
+                </ul>
+                <p id="waiting-animation-{{video["toledo_title"]}}"></p>
+                <div id="waiting-gif-{{video["toledo_title"]}}"></div>
+            {% endfor %}
+        </div>
+    </body>
+
+    <script>
+        function downloadResource(url, filename) {
+	        fetch(url, { headers: new Headers({ Origin: location.origin }), mode: 'cors' })
+                .then(response => {
+                    document.getElementById("waiting-animation-" + filename).innerHTML = "downloading...";
+
+                    var img = document.createElement('img');
+                    img.src = "../static/nyancat.gif";
+                    img.width = 300;
+                    var src = document.getElementById("waiting-gif-" + filename);
+                    src.appendChild(img);
+
+                    return response.blob();
+                })
+	            .then(blob => {
+                    var src = document.getElementById("waiting-gif-" + filename);
+                    src.removeChild(src.childNodes[0]);
+
+                    document.getElementById("waiting-animation-" + filename).innerHTML = "enjoy!";
+                    var a = document.createElement('a');
+                    var extention = ".mp4";
+                    a.download = filename + extention;
+                    a.href = window.URL.createObjectURL(blob);
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+	            })
+	        .catch(e => console.error(e));
+        }
+    </script>
+</html>
