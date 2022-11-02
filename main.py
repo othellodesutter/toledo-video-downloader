@@ -4,6 +4,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.encoders import jsonable_encoder
 import script
+import uvicorn
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -32,3 +33,7 @@ async def main(request: Request):
 @app.get("/info")
 def info(request: Request):
     return templates.TemplateResponse('info.html', {'request': request})
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=80, log_level="info")
