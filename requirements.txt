@@ -1,5 +1,6 @@
-fastapi==0.85.2
-uvicorn==0.17.6
+fastapi
+uvicorn
 jinja2
 python-multipart
 youtube_dl
+logoru
