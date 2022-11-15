@@ -2,3 +2,4 @@
 deprecated/
 __pycache__/
 logs/
+config.py
